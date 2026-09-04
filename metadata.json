@@ -1,0 +1,10 @@
+{
+  "name": "Pinacoteca Clássica AR",
+  "description": "Galeria de arte clássica com visualização em alta definição, movimentos artísticos, guias interativos em áudio, tours em realidade aumentada (AR) e suporte offline para iOS e Android.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

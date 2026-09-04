@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1916" />
+      <stop offset="100%" stop-color="#0b0a09" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5dfa8" />
+      <stop offset="50%" stop-color="#d4af37" />
+      <stop offset="100%" stop-color="#997722" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="url(#bgGrad)" />
+  <rect x="16" y="16" width="480" height="480" rx="88" fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-opacity="0.4" />
+  
+  <!-- Classical Frame & Iconography -->
+  <g filter="url(#shadow)">
+    <!-- Ornate Outer Frame -->
+    <rect x="96" y="80" width="320" height="352" rx="16" fill="#141311" stroke="url(#goldGrad)" stroke-width="12" />
+    <rect x="114" y="98" width="284" height="316" rx="8" fill="none" stroke="#e0be6c" stroke-width="2" stroke-dasharray="6,4" />
+    
+    <!-- Pediment / Classical Gable -->
+    <path d="M76 80 L256 24 L436 80 Z" fill="#181614" stroke="url(#goldGrad)" stroke-width="8" stroke-linejoin="round" />
+    <circle cx="256" cy="56" r="10" fill="url(#goldGrad)" />
+    
+    <!-- Classical Columns flanking -->
+    <rect x="80" y="80" width="20" height="352" fill="#221e1a" stroke="url(#goldGrad)" stroke-width="4" />
+    <rect x="412" y="80" width="20" height="352" fill="#221e1a" stroke="url(#goldGrad)" stroke-width="4" />
+    
+    <!-- Column Capitals -->
+    <path d="M72 80 C72 70 108 70 108 80 Z" fill="url(#goldGrad)" />
+    <path d="M404 80 C404 70 440 70 440 80 Z" fill="url(#goldGrad)" />
+
+    <!-- Interior Canvas Artwork: Renaissance Horizon & Golden Ratio Spiral -->
+    <rect x="126" y="110" width="260" height="292" fill="#0d0c0a" />
+    
+    <!-- Sun/Horizon and Classical Golden Section -->
+    <circle cx="256" cy="220" r="48" fill="none" stroke="url(#goldGrad)" stroke-width="3" opacity="0.8" />
+    <circle cx="256" cy="220" r="16" fill="url(#goldGrad)" opacity="0.9" />
+    
+    <!-- Mountain/Landscape lines -->
+    <path d="M126 330 Q 190 280, 256 310 T 386 290 L 386 402 L 126 402 Z" fill="#1e1b17" opacity="0.9" />
+    <path d="M126 350 Q 210 320, 280 345 T 386 330 L 386 402 L 126 402 Z" fill="#2c2720" opacity="0.9" />
+    
+    <!-- AR Corner Reticles -->
+    <path d="M140 144 L140 124 L160 124" fill="none" stroke="#f5dfa8" stroke-width="4" stroke-linecap="round" />
+    <path d="M372 144 L372 124 L352 124" fill="none" stroke="#f5dfa8" stroke-width="4" stroke-linecap="round" />
+    <path d="M140 370 L140 390 L160 390" fill="none" stroke="#f5dfa8" stroke-width="4" stroke-linecap="round" />
+    <path d="M372 370 L372 390 L352 390" fill="none" stroke="#f5dfa8" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Monogram 'AR' in Classical Typography -->
+    <text x="256" y="386" font-family="'Cinzel', Georgia, serif" font-size="28" font-weight="bold" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="4">ARS CLASSICA</text>
+  </g>
+</svg>
