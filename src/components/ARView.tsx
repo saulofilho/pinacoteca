@@ -333,6 +333,7 @@ export const ARView: React.FC<ARViewProps> = ({
                 <img
                   src={selectedArtwork.imageUrl}
                   alt={selectedArtwork.title}
+                  referrerPolicy="no-referrer"
                   className="max-h-[38vh] sm:max-h-[50vh] w-auto max-w-full object-contain pointer-events-none"
                   draggable={false}
                 />
@@ -584,6 +585,7 @@ export const ARView: React.FC<ARViewProps> = ({
                       <img
                         src={art.thumbUrl}
                         alt={art.title}
+                        referrerPolicy="no-referrer"
                         className="h-36 sm:h-52 w-auto object-cover"
                       />
                     </div>

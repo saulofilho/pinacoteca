@@ -210,6 +210,7 @@ export const MovementsView: React.FC<MovementsViewProps> = ({
           <img
             src={currentMovement.bannerImage}
             alt={currentMovement.name}
+            referrerPolicy="no-referrer"
             className="w-full h-full object-cover opacity-50"
           />
           <div className="absolute inset-0 artwork-gradient" />
@@ -327,6 +328,7 @@ export const MovementsView: React.FC<MovementsViewProps> = ({
                   <img
                     src={art.thumbUrl}
                     alt={art.title}
+                    referrerPolicy="no-referrer"
                     className="w-14 h-14 object-cover border border-white/10 group-hover:border-[#C5A059]"
                     loading="lazy"
                   />

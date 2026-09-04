@@ -225,6 +225,7 @@ export const ArtworkDetailModal: React.FC<ArtworkDetailModalProps> = ({
                 <img
                   src={artwork.imageUrl}
                   alt={artwork.title}
+                  referrerPolicy="no-referrer"
                   className="max-h-[50vh] lg:max-h-[70vh] w-auto max-w-full object-contain border-2 border-white/10 shadow-2xl"
                   loading="eager"
                   draggable={false}

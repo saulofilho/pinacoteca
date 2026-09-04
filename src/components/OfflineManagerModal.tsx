@@ -156,6 +156,7 @@ export const OfflineManagerModal: React.FC<OfflineManagerModalProps> = ({
                     <img
                       src={art.thumbUrl}
                       alt={art.title}
+                      referrerPolicy="no-referrer"
                       className="w-10 h-10 object-cover border border-white/10"
                       loading="lazy"
                     />

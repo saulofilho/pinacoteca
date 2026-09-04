@@ -10,6 +10,7 @@ import {
   LayoutGrid,
   Columns,
   Compass,
+  Shuffle,
 } from 'lucide-react';
 import { Artwork, ArtisticMovementId, GalleryViewMode } from '../types';
 import { ARTWORKS } from '../data/artworks';
@@ -34,6 +35,26 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
   const [selectedMovement, setSelectedMovement] = useState<string>('todos');
   const [viewMode, setViewMode] = useState<GalleryViewMode>('grid');
   const [sortBy, setSortBy] = useState<'year' | 'artist' | 'title'>('year');
+
+  // Random / Daily Artwork of the Day state
+  const [artworkOfTheDayIndex, setArtworkOfTheDayIndex] = useState<number>(() => {
+    const today = new Date();
+    const dayOfYear = Math.floor(
+      (today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24)
+    );
+    return Math.abs(dayOfYear) % ARTWORKS.length;
+  });
+
+  const handleShuffleArtworkOfTheDay = () => {
+    setArtworkOfTheDayIndex((prev) => {
+      let next = Math.floor(Math.random() * ARTWORKS.length);
+      if (next === prev) next = (next + 1) % ARTWORKS.length;
+      return next;
+    });
+  };
+
+  const artworkOfTheDay = ARTWORKS[artworkOfTheDayIndex] || ARTWORKS[0];
+  const movementOfTheDay = MOVEMENTS.find((m) => m.id === artworkOfTheDay.movementId);
 
   const filteredArtworks = useMemo(() => {
     return ARTWORKS.filter((art) => {
@@ -84,6 +105,94 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
           <p className="text-white/60 text-xs sm:text-sm leading-relaxed">
             Navegue pelos tesouros do Louvre, Uffizi, Prado e Rijksmuseum. Inspecione pinceladas com superzoom, ouça audioguias curados e projete obras em tamanho real na parede com Realidade Aumentada.
           </p>
+        </div>
+      </div>
+
+      {/* Obra do Dia (Artwork of the Day) Informative Card */}
+      <div
+        id="artwork-of-the-day-card"
+        className="relative border border-[#C5A059]/40 bg-gradient-to-r from-[#181612] via-[#121212] to-[#0d0d0d] p-4 sm:p-5 overflow-hidden shadow-xl"
+      >
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+          {/* Thumbnail preview */}
+          <div
+            className="relative w-28 h-28 sm:w-32 sm:h-32 flex-shrink-0 overflow-hidden border border-white/10 group cursor-pointer bg-black"
+            onClick={() => onSelectArtwork(artworkOfTheDay)}
+          >
+            <img
+              src={artworkOfTheDay.thumbUrl}
+              alt={artworkOfTheDay.title}
+              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+            <div className="absolute bottom-1 right-1 p-1 bg-black/80 text-[#C5A059] border border-white/10">
+              <Maximize2 className="w-3 h-3" />
+            </div>
+          </div>
+
+          {/* Info content */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between gap-2 mb-1.5">
+              <div className="flex items-center gap-2">
+                <span className="flex items-center gap-1.5 px-2 py-0.5 bg-[#C5A059]/15 border border-[#C5A059]/40 text-[#C5A059] text-[10px] uppercase tracking-widest font-semibold">
+                  <Sparkles className="w-3 h-3" />
+                  Obra do Dia
+                </span>
+                <span
+                  className="text-[10px] uppercase tracking-wider px-2 py-0.5 border border-white/10 text-white/70"
+                  style={{ backgroundColor: `${movementOfTheDay?.colorAccent}33` }}
+                >
+                  {movementOfTheDay?.name}
+                </span>
+              </div>
+
+              <button
+                id="shuffle-artwork-of-day-btn"
+                onClick={handleShuffleArtworkOfTheDay}
+                className="flex items-center gap-1 text-[11px] text-white/60 hover:text-[#C5A059] px-2.5 py-1 bg-white/5 border border-white/10 hover:border-[#C5A059]/40 transition cursor-pointer"
+                title="Sortear outra obra do acervo"
+              >
+                <Shuffle className="w-3 h-3" />
+                <span className="hidden sm:inline">Sortear Outra</span>
+              </button>
+            </div>
+
+            <h3
+              onClick={() => onSelectArtwork(artworkOfTheDay)}
+              className="serif text-base sm:text-xl font-bold text-[#E5E5E5] hover:text-[#C5A059] transition cursor-pointer line-clamp-1"
+            >
+              {artworkOfTheDay.title}
+            </h3>
+            <p className="text-xs text-white/60 mb-2">
+              <span className="text-white/85 font-medium">{artworkOfTheDay.artist}</span> ({artworkOfTheDay.artistLifespan}) • <span className="text-[#C5A059]">{artworkOfTheDay.year}</span> • {artworkOfTheDay.museum}
+            </p>
+
+            <p className="text-xs text-white/50 line-clamp-2 leading-relaxed mb-3">
+              {artworkOfTheDay.description}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-2 pt-0.5">
+              <button
+                id="artwork-of-day-explore-btn"
+                onClick={() => onSelectArtwork(artworkOfTheDay)}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-[#C5A059] text-black text-xs font-semibold uppercase tracking-wider hover:brightness-110 transition gold-glow cursor-pointer"
+              >
+                <Headphones className="w-3.5 h-3.5" />
+                Explorar em Alta Resolução
+              </button>
+
+              <button
+                id="artwork-of-day-ar-btn"
+                onClick={() => onOpenARWithArtwork(artworkOfTheDay)}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 text-white/80 hover:text-white hover:border-[#C5A059]/50 text-xs font-medium uppercase tracking-wider transition cursor-pointer"
+              >
+                <Compass className="w-3.5 h-3.5 text-[#C5A059]" />
+                Projetar em AR
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -199,8 +308,9 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                   onClick={() => onSelectArtwork(art)}
                 >
                   <img
-                    src={art.imageUrl}
+                    src={art.thumbUrl || art.imageUrl}
                     alt={art.title}
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
@@ -287,8 +397,9 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                   onClick={() => onSelectArtwork(art)}
                 >
                   <img
-                    src={art.imageUrl}
+                    src={art.thumbUrl || art.imageUrl}
                     alt={art.title}
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                     loading="lazy"
                   />

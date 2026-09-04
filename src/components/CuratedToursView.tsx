@@ -125,6 +125,7 @@ export const CuratedToursView: React.FC<CuratedToursViewProps> = ({
                     <img
                       src={tour.bannerImage}
                       alt={tour.title}
+                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70"
                     />
                     <div className="absolute inset-0 artwork-gradient" />
@@ -154,6 +155,7 @@ export const CuratedToursView: React.FC<CuratedToursViewProps> = ({
                             src={art.thumbUrl}
                             alt={art.title}
                             title={art.title}
+                            referrerPolicy="no-referrer"
                             className="w-8 h-8 object-cover border border-white/10"
                           />
                         ))}
@@ -229,6 +231,7 @@ export const CuratedToursView: React.FC<CuratedToursViewProps> = ({
                 <img
                   src={currentArtwork.imageUrl}
                   alt={currentArtwork.title}
+                  referrerPolicy="no-referrer"
                   className="max-h-full max-w-full object-contain cursor-pointer"
                   onClick={() => onSelectArtwork(currentArtwork)}
                 />
