@@ -53,11 +53,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => onTabChange('galeria')}
             className="flex items-center gap-3.5 cursor-pointer group"
           >
-            <div className="w-9 h-9 border border-[#C5A059] bg-[#0A0A0A] flex items-center justify-center gold-glow transition group-hover:bg-[#C5A059]/10">
-              <span className="serif text-base font-bold text-[#C5A059]">
-                AR
-              </span>
-            </div>
+            <img
+              src="./icon.svg"
+              alt="Pinacoteca Clássica AR"
+              className="w-9 h-9 border border-[#C5A059] bg-[#0A0A0A] p-0.5 object-contain gold-glow transition group-hover:scale-105"
+            />
             <div>
               <div className="flex items-center gap-2">
                 <span className="serif text-sm sm:text-base font-bold text-[#E5E5E5] tracking-tight block leading-tight">

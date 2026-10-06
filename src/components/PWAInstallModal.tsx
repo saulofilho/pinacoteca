@@ -39,12 +39,12 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({ isOpen, onClos
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-3 mb-5">
-          <div className="w-12 h-12 bg-[#C5A059] p-0.5 flex items-center justify-center shadow-lg gold-glow">
-            <div className="w-full h-full bg-[#0A0A0A] flex items-center justify-center">
-              <span className="serif text-base font-bold text-[#C5A059]">AR</span>
-            </div>
-          </div>
+        <div className="flex items-center gap-3.5 mb-5">
+          <img
+            src="./icon.svg"
+            alt="Ícone Pinacoteca Clássica"
+            className="w-12 h-12 rounded border border-[#C5A059]/60 shadow-lg object-contain bg-[#141311] p-0.5 gold-glow"
+          />
           <div>
             <h3 className="serif text-xl font-bold text-[#E5E5E5]">
               Instalar Pinacoteca Clássica
